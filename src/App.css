@@ -3,6 +3,7 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
 .App {
   width: 100%;
   min-height: 100vh;
@@ -13,20 +14,23 @@ body {
 }
 
 @keyframes boxing {
-  0%{
+  0% {
     box-shadow: 5px 5px 5px goldenrod;
   }
-  25%{
+
+  25% {
     box-shadow: 5px -5px 5px rgb(220, 86, 213);
   }
-   50%{
+
+  50% {
     box-shadow: -5px -5px 5px rgb(74, 186, 27);
   }
-  
-  75%{
+
+  75% {
     box-shadow: -5px 5px 5px rgb(32, 187, 218);
   }
-  100%{
+
+  100% {
     box-shadow: 5px 5px 5px goldenrod;
   }
 }
@@ -52,10 +56,9 @@ body {
   text-decoration: line-through;
 }
 
-.to-do{
+.to-do {
   display: flex;
-  gap: 1rem
-  /* border-bottom: 1px solid gray; */
+  gap: 1rem;
 }
 
 .to-do:not(:last-of-type) {

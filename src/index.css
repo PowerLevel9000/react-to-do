@@ -18,8 +18,12 @@ form input {
 
 button {
   display: flex;
-  height: fit-content;
-  padding: 0 .5rem;
+  /* stylelint-disable */
+  height: fit-content; 
+
+  /* stylelint-enable */
+
+  padding: 0 0.5rem;
   align-items: center;
   border-radius: 5px;
   background-color: rgba(242, 180, 180, 0.349);
@@ -42,4 +46,3 @@ button {
 .task-wrapper::-webkit-scrollbar {
   display: none;
 }
-
