@@ -3,38 +3,23 @@ import React, { Component } from 'react';
 export default class ToDo extends Component {
   constructor(props) {
     super(props);
+    const todosFromStorage = JSON.parse(localStorage.getItem('todos')) || [];
     this.state = {
       input: '',
-      todos: [
-        {
-          id: 1,
-          task: 'complete your work',
-          completed: true,
-        },
-        {
-          id: 2,
-          task: 'give him the review',
-          completed: false,
-        },
-        {
-          id: 3,
-          task: 'go fuck yourself',
-          completed: false,
-        },
-      ],
+      todos: todosFromStorage,
     };
     this.handleChange = this.handleChange.bind(this);
     this.addToDo = this.addToDo.bind(this);
     this.markCompleted = this.markCompleted.bind(this);
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({
       input: event.target.value,
     });
-  }
+  };
 
-  markCompleted(id) {
+  markCompleted = (id) => {
     this.setState((prevState) => {
       const updatedTodos = prevState.todos.map((todo) => {
         if (todo.id === id) {
@@ -42,25 +27,27 @@ export default class ToDo extends Component {
         }
         return todo;
       });
+      localStorage.setItem('todos', JSON.stringify(updatedTodos));
       return {
         todos: updatedTodos,
       };
     });
-  }
+  };
 
   addToDo(event) {
+    const { input, todos } = this.state;
     event.preventDefault();
-    this.setState((state) => ({
-      todos: [
-        ...state.todos,
-        {
-          id: state.todos.length + 1,
-          task: state.input,
-          completed: false,
-        },
-      ],
+    const newTodo = {
+      id: Date.now(),
+      task: input,
+      completed: false,
+    };
+    const updatedTodos = [...todos, newTodo];
+    localStorage.setItem('todos', JSON.stringify(updatedTodos));
+    this.setState({
+      todos: updatedTodos,
       input: '',
-    }));
+    });
   }
 
   render() {
@@ -74,7 +61,7 @@ export default class ToDo extends Component {
         <ul className="todos">
           {todos.map(({ id, completed, task }) => (
             <li key={id}>
-              <input type="checkbox" checked={completed} onChange={() => this.markCompleted(id)} />
+              <input key={id} type="checkbox" checked={completed} onChange={() => this.markCompleted(id)} />
               {task}
             </li>
           ))}
