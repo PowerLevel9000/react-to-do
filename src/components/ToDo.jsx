@@ -40,7 +40,7 @@ export default class ToDo extends Component {
     const { input, todos } = this.state;
     const newTodo = {
       id: Date.now(),
-      task: input,
+      task: input.length === 0 ? "you didn't add any task ¬_¬" : input,
       completed: false,
     };
     const updatedTodos = [...todos, newTodo];

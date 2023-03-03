@@ -45,6 +45,7 @@ body {
   animation-name: boxing;
   animation-duration: 1s;
   animation-iteration-count: infinite;
+  min-height: 40vh;
 }
 
 .strike {
