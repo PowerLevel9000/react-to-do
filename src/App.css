@@ -1,3 +1,66 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .App {
+  width: 100%;
+  min-height: 100vh;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes boxing {
+  0% {
+    box-shadow: 5px 5px 5px goldenrod;
+  }
+
+  25% {
+    box-shadow: 5px -5px 5px rgb(220, 86, 213);
+  }
+
+  50% {
+    box-shadow: -5px -5px 5px rgb(74, 186, 27);
+  }
+
+  75% {
+    box-shadow: -5px 5px 5px rgb(32, 187, 218);
+  }
+
+  100% {
+    box-shadow: 5px 5px 5px goldenrod;
+  }
+}
+
+.title {
   text-align: center;
+  color: #5988d9;
+}
+
+.tasks {
+  margin: 5rem;
+  width: 70%;
+  padding: 1rem;
+  border: 1px outset black;
+  border-radius: 15px;
+  animation-name: boxing;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  min-height: 40vh;
+}
+
+.strike {
+  text-decoration: line-through;
+}
+
+.to-do {
+  display: flex;
+  gap: 1rem;
+}
+
+.to-do:not(:last-of-type) {
+  border-bottom: 1px solid gray;
 }

@@ -2,3 +2,47 @@ body {
   margin: 0;
 }
 
+.screen {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+form input {
+  width: 90%;
+  outline: none;
+  border: none;
+  font-style: italic;
+  padding: 1rem;
+}
+
+button {
+  display: flex;
+  /* stylelint-disable */
+  height: fit-content; 
+
+  /* stylelint-enable */
+
+  padding: 0 0.5rem;
+  align-items: center;
+  border-radius: 5px;
+  background-color: rgba(242, 180, 180, 0.349);
+}
+
+.to-do {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  overflow: scroll;
+  scrollbar-width: none;
+}
+
+.task-wrapper::-webkit-scrollbar {
+  display: none;
+}
