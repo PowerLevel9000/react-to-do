@@ -24,27 +24,57 @@ export default class ToDo extends Component {
       ],
     };
     this.handleChange = this.handleChange.bind(this);
+    this.addToDo = this.addToDo.bind(this);
+    this.markCompleted = this.markCompleted.bind(this);
   }
 
-  handleChange = (event) => {
+  handleChange(event) {
     this.setState({
       input: event.target.value,
     });
-    console.log(this.state);
-  };
+  }
+
+  markCompleted(id) {
+    this.setState((prevState) => {
+      const updatedTodos = prevState.todos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, completed: !todo.completed };
+        }
+        return todo;
+      });
+      return {
+        todos: updatedTodos,
+      };
+    });
+  }
+
+  addToDo(event) {
+    event.preventDefault();
+    this.setState((state) => ({
+      todos: [
+        ...state.todos,
+        {
+          id: state.todos.length + 1,
+          task: state.input,
+          completed: false,
+        },
+      ],
+      input: '',
+    }));
+  }
 
   render() {
     const { input, todos } = this.state;
     return (
       <div>
-        <div className="screen">
+        <form className="screen" onSubmit={this.addToDo}>
           <input value={input} onChange={this.handleChange} />
-          <button type="button">Add</button>
-        </div>
+          <button type="submit">Add</button>
+        </form>
         <ul className="todos">
           {todos.map(({ id, completed, task }) => (
             <li key={id}>
-              <input type="checkbox" checked={completed} />
+              <input type="checkbox" checked={completed} onChange={() => this.markCompleted(id)} />
               {task}
             </li>
           ))}
