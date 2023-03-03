@@ -35,8 +35,8 @@ export default class ToDo extends Component {
   };
 
   addToDo(event) {
-    const { input, todos } = this.state;
     event.preventDefault();
+    const { input, todos } = this.state;
     const newTodo = {
       id: Date.now(),
       task: input,
@@ -50,6 +50,16 @@ export default class ToDo extends Component {
     });
   }
 
+  removeToDo(id) {
+    this.setState((prevState) => {
+      const updatedTodos = prevState.todos.filter((todo) => todo.id !== id);
+      localStorage.setItem('todos', JSON.stringify(updatedTodos));
+      return {
+        todos: updatedTodos,
+      };
+    });
+  }
+
   render() {
     const { input, todos } = this.state;
     return (
@@ -58,14 +68,16 @@ export default class ToDo extends Component {
           <input value={input} onChange={this.handleChange} />
           <button type="submit">Add</button>
         </form>
-        <ul className="todos">
+        <div>
           {todos.map(({ id, completed, task }) => (
-            <li key={id}>
+            <div className="to-do" key={id}>
               <input key={id} type="checkbox" checked={completed} onChange={() => this.markCompleted(id)} />
-              {task}
-            </li>
+              <p>{task}</p>
+              <button type="button" onClick={() => this.removeToDo(id)}>remove</button>
+            </div>
+
           ))}
-        </ul>
+        </div>
       </div>
     );
   }
