@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Title from './Title';
 
 export default class ToDo extends Component {
   constructor(props) {
@@ -63,7 +64,8 @@ export default class ToDo extends Component {
   render() {
     const { input, todos } = this.state;
     return (
-      <div>
+      <div className="tasks">
+        <Title />
         <form className="screen" onSubmit={this.addToDo}>
           <input value={input} onChange={this.handleChange} />
           <button type="submit">Add</button>
@@ -75,7 +77,6 @@ export default class ToDo extends Component {
               <p>{task}</p>
               <button type="button" onClick={() => this.removeToDo(id)}>remove</button>
             </div>
-
           ))}
         </div>
       </div>
