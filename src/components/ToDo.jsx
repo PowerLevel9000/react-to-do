@@ -67,14 +67,16 @@ export default class ToDo extends Component {
       <div className="tasks">
         <Title />
         <form className="screen" onSubmit={this.addToDo}>
-          <input value={input} onChange={this.handleChange} />
-          <button type="submit">Add</button>
+          <input placeholder="Add your task..." value={input} onChange={this.handleChange} />
+          <button type="submit">（￣︶￣）↗</button>
         </form>
         <div>
           {todos.map(({ id, completed, task }) => (
             <div className="to-do" key={id}>
-              <input key={id} type="checkbox" checked={completed} onChange={() => this.markCompleted(id)} />
-              <p>{task}</p>
+              <div className={completed ? 'task-wrapper strike' : 'task-wrapper'}>
+                <input key={id} type="checkbox" checked={completed} onChange={() => this.markCompleted(id)} />
+                <p>{task}</p>
+              </div>
               <button type="button" onClick={() => this.removeToDo(id)}>remove</button>
             </div>
           ))}
